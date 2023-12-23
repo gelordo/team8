@@ -1,12 +1,4 @@
 import csv
-with open('Groups and Subjects (FAF Hack) - Profesori.csv', mode ='r')as file:
-    csvFile = csv.reader(file)
-    for lines in csvFile:
-            
-with open('Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
-    grupe=csv.reader(file1)
-    for lines in grupe:
-        for element in lines:
 
 class Groups:
     def __init__(self,id,sp,lg,nr,sids):
@@ -47,5 +39,18 @@ class Cabinets:
         self.nr=int(nr)
     def __str__(self):
         return f"Cabinet id={self.id}\nIs Lab={self.lab}\nMax Nr of People in Cabinet={self.nr}"
+
+#reading from the file
+
+groups_list = []
+
+with open('Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
+    grupe=csv.reader(file1)
+    for lines in grupe:
+        groups_list.append(Groups(lines))
+with open('Groups and Subjects (FAF Hack) - Profesori.csv', mode ='r')as file:
+    csvFile = csv.reader(file)
+    for lines in csvFile:
+
 
 
