@@ -52,11 +52,6 @@ with open('Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
         except Exception:
             continue
         
-for i in range(len(groups_list)):
-    print(groups_list[i])
-#with open('Groups and Subjects (FAF Hack) - Profesori.csv', mode ='r')as file:
-#    csvFile = csv.reader(file)
-#    for lines in csvFile:
 
 cab_list = []
 
@@ -69,8 +64,6 @@ with open('Groups and Subjects (FAF Hack) - Cabinete.csv')as file2:
             continue 
 
 
-for i in range(len(cab_list)):
-    print(cab_list[i])
 
 sub_list = []
 
@@ -82,7 +75,15 @@ with open('Groups and Subjects (FAF Hack) - Subiecte.csv')as file3:
         except:
             continue
 
-for i in range(len(sub_list)):
-    print(sub_list[i])
 
+prof_list = []
+
+with open('Groups and Subjects (FAF Hack) - Profesori.csv')as file4:
+    prof = csv.reader(file4)
+    for lines in prof:
+        try:
+            prof_list.append(Professors(lines[0],lines[1],lines[2],lines[3],lines[4:-1]))
+        except:
+            print('except')
+            continue
 
