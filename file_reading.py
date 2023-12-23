@@ -29,8 +29,19 @@ class Professors:
         self.subj=subj
         self.type=type
         self.per=per
+        self.av = []
+   
+        for index in range(int(len(self.per))):
+            if index % 7 == 0:
+                k+=1
+
+            self.av[k]+=int(self.per[index])
+        
+        print(self.av)
+                
     def __str__(self):
         return f"id of Professors={self.id}\nTeacher Name={self.name}\nSubject id={self.subj}\nLesson Type={self.type}\nPairs{self.per}"
+        
 
 class Cabinets:
     def __init__(self,id,lab,nr):
