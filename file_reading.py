@@ -36,9 +36,8 @@ class Professors:
                 k+=1
 
             self.av[k]+=int(self.per[index])
-        
-        print(self.av)
-                
+
+    
     def __str__(self):
         return f"id of Professors={self.id}\nTeacher Name={self.name}\nSubject id={self.subj}\nLesson Type={self.type}\nPairs{self.per}"
         
