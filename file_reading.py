@@ -47,10 +47,42 @@ groups_list = []
 with open('Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
     grupe=csv.reader(file1)
     for lines in grupe:
-        groups_list.append(Groups(lines))
-with open('Groups and Subjects (FAF Hack) - Profesori.csv', mode ='r')as file:
-    csvFile = csv.reader(file)
-    for lines in csvFile:
+        try:
+            groups_list.append(Groups(lines[0],lines[1],lines[2],lines[3],lines[4]))
+        except Exception:
+            continue
+        
+for i in range(len(groups_list)):
+    print(groups_list[i])
+#with open('Groups and Subjects (FAF Hack) - Profesori.csv', mode ='r')as file:
+#    csvFile = csv.reader(file)
+#    for lines in csvFile:
 
+cab_list = []
+
+with open('Groups and Subjects (FAF Hack) - Cabinete.csv')as file2:
+    cabs = csv.reader(file2)
+    for lines in cabs:
+        try:
+            cab_list.append(Cabinets(lines[0],lines[1],lines[2]))
+        except :
+            continue 
+
+
+for i in range(len(cab_list)):
+    print(cab_list[i])
+
+sub_list = []
+
+with open('Groups and Subjects (FAF Hack) - Subiecte.csv')as file3:
+    subs = csv.reader(file3)
+    for lines in subs:
+        try:
+            sub_list.append(Subjects(lines[0],lines[1],lines[2],lines[3],lines[4]))
+        except:
+            continue
+
+for i in range(len(sub_list)):
+    print(sub_list[i])
 
 
