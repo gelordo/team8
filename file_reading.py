@@ -2,15 +2,25 @@ import csv
 import random
 
 class Groups:
-    def __init__(self,id,sp,lg,nr,sids):
+    def __init__(self,id,sp,lg,nr,list_of_subs_ids):
         self.id=int(id)
         self.sp=sp
         self.lg=lg
         self.nr=int(nr)
-        self.sids=sids
+        self.list_of_subs_ids= list_of_subs_ids
+
     def __str__(self):
-        return f"id of Group={self.id}\nSpeciality={self.sp}\nLanguage={self.lg}\nNr of people in group={self.nr}\nSubject ids={self.sids}"
+        return f"id of Group={self.id}\nSpeciality={self.sp}\nLanguage={self.lg}\nNr of people in group={self.nr}\nSubject ids={self.list_of_subs_ids}"
     
+    def add_subs_classes(self,class_list):
+        self.list_of_subs = []
+        #print(self.list_of_subs_ids)
+        self.list_of_subs_ids = list(map(int, self.list_of_subs_ids.split(', ')))
+
+        for id in self.list_of_subs_ids:
+            self.list_of_subs.append(class_list[id-1])
+
+        
 class Subjects:
     def __init__(self,id,uc,t,p,l,tot,year,sem):
         self.id=int(id)
@@ -61,45 +71,43 @@ class per_hour:
 
 groups_list = []
 
-with open('CSV Files/Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
+with open('Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
     grupe=csv.reader(file1)
     for lines in grupe:
         try:
             groups_list.append(Groups(lines[0],lines[1],lines[2],lines[3],lines[4]))
         except Exception:
             continue
-        
-# for item in groups_list:
-#     print(item)
-#     print('')
+
+
 cab_list = []
 
-with open('CSV Files/Groups and Subjects (FAF Hack) - Cabinete.csv')as file2:
+with open('Groups and Subjects (FAF Hack) - Cabinete.csv')as file2:
     cabs = csv.reader(file2)
     for lines in cabs:
         try:
             cab_list.append(Cabinets(lines[0],lines[1],lines[2]))
         except :
+            print("skipped:",lines)
             continue 
-
-
 
 sub_list = []
 
-with open('CSV Files/Groups and Subjects (FAF Hack) - Subiecte.csv')as file3:
+with open('Groups and Subjects (FAF Hack) - Subiecte.csv')as file3:
     subs = csv.reader(file3)
     for lines in subs:
         try:
             sub_list.append(Subjects(lines[0],lines[1],lines[2],lines[3],lines[4],lines[5],lines[6],lines[7]))
         except:
+            print('error at', lines)
             continue
-for item in sub_list:
-    print(item)
-    print('')
+
+for i in range(len(groups_list)):
+    groups_list[i].add_subs_classes(sub_list)
 
 prof_list = []
 
-with open('CSV Files/Groups and Subjects (FAF Hack) - Profesori.csv')as file4:
+with open('Groups and Subjects (FAF Hack) - Profesori.csv')as file4:
     prof = csv.reader(file4)
     for lines in prof:
         try:
