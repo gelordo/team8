@@ -61,7 +61,7 @@ class per_hour:
 
 groups_list = []
 
-with open('Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
+with open('CSV Files/Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
     grupe=csv.reader(file1)
     for lines in grupe:
         try:
@@ -69,10 +69,12 @@ with open('Groups and Subjects (FAF Hack) - Grupe.csv',mode='r')as file1:
         except Exception:
             continue
         
-
+# for item in groups_list:
+#     print(item)
+#     print('')
 cab_list = []
 
-with open('Groups and Subjects (FAF Hack) - Cabinete.csv')as file2:
+with open('CSV Files/Groups and Subjects (FAF Hack) - Cabinete.csv')as file2:
     cabs = csv.reader(file2)
     for lines in cabs:
         try:
@@ -84,18 +86,20 @@ with open('Groups and Subjects (FAF Hack) - Cabinete.csv')as file2:
 
 sub_list = []
 
-with open('Groups and Subjects (FAF Hack) - Subiecte.csv')as file3:
+with open('CSV Files/Groups and Subjects (FAF Hack) - Subiecte.csv')as file3:
     subs = csv.reader(file3)
     for lines in subs:
         try:
             sub_list.append(Subjects(lines[0],lines[1],lines[2],lines[3],lines[4],lines[5],lines[6],lines[7]))
         except:
             continue
-
+for item in sub_list:
+    print(item)
+    print('')
 
 prof_list = []
 
-with open('Groups and Subjects (FAF Hack) - Profesori.csv')as file4:
+with open('CSV Files/Groups and Subjects (FAF Hack) - Profesori.csv')as file4:
     prof = csv.reader(file4)
     for lines in prof:
         try:
